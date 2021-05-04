@@ -21,7 +21,7 @@
     use Illuminate\Support\Facades\DB;
     
 Далее функция
-
+<p>
  public function run()
       {
               DB::table('branches')->insert([
@@ -30,7 +30,7 @@
              'Short_name' => Str::random(5),
           ]);
       }
-    
+    </p>
 После чего запускаем seed
 
     $ php artisan db:seed --class=BranchTableSeeder
