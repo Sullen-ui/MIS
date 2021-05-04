@@ -15,10 +15,10 @@ class CreateTimetablesTable extends Migration
     {
         Schema::create('timetables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_doctor');
+            $table->unsignedBigInteger('id_doctor');
             $table->mediumText('time');
             $table->integer('step');
-            $table->unsignedInteger('id_branch')->nullable();
+            $table->unsignedBigInteger('id_branch');
             $table->integer('parity')->default(0);        //0 -без деления , 1 -нечет, 2 - чет
 
             $table->foreign('id_branch')->references('id')->on('branches')->onDelete('CASCADE')->onUpdate('CASCADE');

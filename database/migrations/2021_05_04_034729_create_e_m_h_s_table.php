@@ -15,7 +15,15 @@ class CreateEMHSTable extends Migration
     {
         Schema::create('e_m_h_s', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_patient');
+            $table->unsignedBigInteger('id_doctor');
+            $table->string('create_date');
+            $table->mediumText('description');
+            $table->string('name');
+
+            
+            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('id_doctor')->references('id')->on('doctors')->onUpdate('CASCADE');
         });
     }
 

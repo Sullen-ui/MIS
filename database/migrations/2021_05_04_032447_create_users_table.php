@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('login');
             $table->string('password');
             $table->integer('type'); //Врач, оператор, регистратор
-            $table->unsignedInteger('id_branch')->nullable();
+            $table->unsignedBigInteger('id_branch')->nullable();
             $table->foreign('id_branch')->references('id')->on('branches')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }

@@ -14,7 +14,7 @@ class CreateWorkPlacesTable extends Migration
     public function up()
     {
         Schema::create('work_places', function (Blueprint $table) {
-            $table->primary('id');
+            $table->id();
             $table->string('name');
         });
     }

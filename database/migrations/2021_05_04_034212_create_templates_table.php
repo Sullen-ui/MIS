@@ -15,10 +15,10 @@ class CreateTemplatesTable extends Migration
     {
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_doctor')->nullable();
+            $table->unsignedBigInteger('id_doctor');
             $table->text('template');
             $table->string('name');
-            $table->unsignedInteger('id_branch')->nullable();
+            $table->unsignedBigInteger('id_branch');
 
             $table->foreign('id_branch')->references('id')->on('branches')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('id_doctor')->references('id')->on('doctors')->onDelete('CASCADE')->onUpdate('CASCADE');
