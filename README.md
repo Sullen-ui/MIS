@@ -7,7 +7,39 @@
 
 <img src="https://user-images.githubusercontent.com/82956250/116987450-e6d85d80-acf0-11eb-8fa1-025dcf15d0a7.png" style="width:100%" />
 
+Создать seed (добаление одной записи в таблицу за раз)
+    
+    php artisan make:seeder UserSeeder
 
+Войти в UserSeeder
+подключить Str для последующей генерации рандомной строки
+
+    use Illuminate\Support\Str;
+    
+Из фасадов подключить DB для обращения к базе
+
+    use Illuminate\Support\Facades\DB;
+    
+Далее функция
+
+ public function run()
+      {
+              DB::table('branches')->insert([
+              'name' => Str::random(10),
+             'Service_status' => rand(0,1),
+             'Short_name' => Str::random(5),
+          ]);
+      }
+    
+После чего запускаем seed
+
+    $ php artisan db:seed --class=BranchTableSeeder
+    
+Результат:
+
+![image](https://user-images.githubusercontent.com/82956250/117044004-bb289800-ad2f-11eb-9018-2e5aaa6151ba.png)
+
+    
 
 
 
