@@ -22,13 +22,13 @@
     
 Далее функция
 <p>
- public function run()
-      {
-              DB::table('branches')->insert([
-              'name' => Str::random(10),
-             'Service_status' => rand(0,1),
-             'Short_name' => Str::random(5),
-          ]);
+ public function run()<br>
+      {<br>
+              DB::table('branches')->insert([<br>
+              'name' => Str::random(10),<br>
+             'Service_status' => rand(0,1),<br>
+             'Short_name' => Str::random(5),<br>
+          ]);<br>
       }
     </p>
 После чего запускаем seed
