@@ -10,4 +10,6 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = ['Name','Service_status', 'Short_name'];
+
+  
 }
