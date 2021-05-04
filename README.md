@@ -1,6 +1,6 @@
 1. Создание БД (+)
 2. Создание связей и отношений (+)
-2.1 Заполнение в порядке 
+2.1 Заполнение в порядке (seed) 
 <img src="https://user-images.githubusercontent.com/82956250/116987450-e6d85d80-acf0-11eb-8fa1-025dcf15d0a7.png" style="width:100%" />
 
 
