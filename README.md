@@ -1,3 +1,22 @@
+1. Создание БД (+)
+2. Создание связей и отношений (+)
+2.1 Заполнение в порядке (seed) 
+<img src="https://user-images.githubusercontent.com/82956250/116987450-e6d85d80-acf0-11eb-8fa1-025dcf15d0a7.png" style="width:100%" />
+
+
+
+
+
+
+3. Создание вьюшек
+4. Подключение форм
+5. Описание моделей и контроллеров
+
+..аутентификация
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Аутентификация
 
 composer require laravel/ui
@@ -20,15 +39,12 @@ npm run dev
 
 2. Создать посредника
 
-	php artisan make:middleware Confirmed
+        php artisan make:middleware Confirmed
+        //приписать его к /home 
+        php artisan make:middleware Noconfirmed
+        //приписать его к /email-confirm 
 
-	приписать его к /home 
-
-	php artisan make:middleware Noconfirmed
-
-	приписать его к /email-confirm 
-
-3.Создать контроллер для страниц
+4.Создать контроллер для страниц
 
 	php artisan make:controller PagesController
 
@@ -55,10 +71,10 @@ use Auth
 ---------------------------------------------------------------------------
 Правильный пул
 
-composer install
+    composer install
 
-env - переименовать
+    env - переименовать
 
-php artisan key:generate
+    php artisan key:generate
 
-php artisan serve             ----------------------------->>>>>>>>>>
+    php artisan serve
