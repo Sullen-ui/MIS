@@ -74,10 +74,10 @@ use Auth
 ---------------------------------------------------------------------------
 Правильный пул
 
-composer install
+    composer install
 
-env - переименовать
+    env - переименовать
 
-php artisan key:generate
+    php artisan key:generate
 
-php artisan serve             ----------------------------->>>>>>>>>>
+    php artisan serve
