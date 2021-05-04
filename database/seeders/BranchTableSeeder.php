@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Branch;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 
 class BranchTableSeeder extends Seeder
 {
@@ -14,10 +17,10 @@ class BranchTableSeeder extends Seeder
      */
     public function run()
     {
-          Branch::table('users')->insert([
-            'name' => str_random(10),
-            'Service_status' => int_random(0,1),
-            'Short_name' => bcrypt('secret'),////////Поменяй блять это
+          DB::table('branches')->insert([
+            'name' => Str::random(10),
+            'Service_status' => rand(0,1),
+            'Short_name' => Str::random(5),
         ]);
     }
 }
