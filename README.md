@@ -39,7 +39,7 @@
 
 ![image](https://user-images.githubusercontent.com/82956250/117044004-bb289800-ad2f-11eb-9018-2e5aaa6151ba.png)
 
-Запуск наполнения БД
+Запуск наполнения БД (Вся тестовая база)
 
      php artisan db:seed
 
