@@ -19,10 +19,10 @@
                                 <div class="form-title"><h1>Информационная система</h1></div>
                             </div>
                         </div>
-                        <div class="form-group row justify-content-center">
+                        <div class="form-group row justify-content-center ">
 
-                            <div class="col-md-3">
-                                <input id="login" type="login" class="form-control @error('login') is-invalid @enderror" name="login" placeholder="Логин" autocomplete="off" value="{{ old('login') }}" required autocomplete="email" autofocus>
+                            <div class="col-md-3 ">
+                                <input id="login" type="login" class="form-control @error('login') is-invalid @enderror mb-3" name="login" placeholder="Логин" autocomplete="off" value="{{ old('login') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
