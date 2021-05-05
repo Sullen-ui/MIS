@@ -16,7 +16,7 @@ class DoctorsTableSeeder extends Seeder
     {
         DB::table('doctors')->insert([
             ['name' => 'Воронова Екатерина Алексеевна','dob' => '31.02.1990','prof_name' => 'Терапевт',
-                'id_profession' => 4,'id_branch' => 1,'status' => 1, 'cabinet' => '101','id_user' => 1],
+                'id_profession' => 4,'id_branch' => 1,'status' => 1, 'cabinet' => '101','id_user' => 2],
             
             ]);
     }

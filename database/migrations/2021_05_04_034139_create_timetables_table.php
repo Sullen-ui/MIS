@@ -21,8 +21,9 @@ class CreateTimetablesTable extends Migration
             $table->unsignedBigInteger('id_branch');
             $table->integer('parity')->default(0);        //0 -без деления , 1 -нечет, 2 - чет
 
+            $table->foreign('id_doctor')->references('id')->on('doctors')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('id_branch')->references('id')->on('branches')->onDelete('CASCADE')->onUpdate('CASCADE');
-
+            
 
 
         });
