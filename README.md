@@ -33,20 +33,28 @@
     </p>
 После чего запускаем seed
 
-    $ php artisan db:seed --class=BranchTableSeeder
+     php artisan db:seed --class=BranchTableSeeder
     
 Результат:
 
 ![image](https://user-images.githubusercontent.com/82956250/117044004-bb289800-ad2f-11eb-9018-2e5aaa6151ba.png)
 
-    
+Запуск наполнения БД
+
+     php artisan db:seed
 
 
 
 
 3. Создание вьюшек
-4. Подключение форм
-5. Описание моделей и контроллеров
+    -Меню
+    -Регистрация пациента
+    -База пациентов
+    -Расписание
+    -Доктор
+   Модальные окна 
+5. Подключение форм
+6. Описание моделей и контроллеров
 
 ..аутентификация
 
