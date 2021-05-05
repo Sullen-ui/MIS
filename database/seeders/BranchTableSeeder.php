@@ -18,9 +18,8 @@ class BranchTableSeeder extends Seeder
     public function run()
     {
           DB::table('branches')->insert([
-            'name' => Str::random(10),
-            'Service_status' => rand(0,1),
-            'Short_name' => Str::random(5),
-        ]);
+            ['name' => 'Поликлиника №1','Service_status' => 0,'Short_name' => 'П1'],
+            ['name' => 'Стационар','Service_status' => 0,'Short_name' => 'СТАЦ']
+            ]);
     }
 }
