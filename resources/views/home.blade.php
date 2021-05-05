@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-3">
                 <div class="menu-button">
-                    <a href="#">
+                    <a href="{{ route('BasePatient') }}">
                         База пациентов
                     </a>
                 </div>

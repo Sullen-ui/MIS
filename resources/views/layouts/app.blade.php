@@ -7,10 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
  
-    <title>{{ config('app.name', 'Laravel') }}</title>
+     <title>{{ config('ass', 'Ass') }}</title> <!-- app.name -->
 
     <!-- Scripts -->
-    
+    <script src="https://kit.fontawesome.com/61093a97c4.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

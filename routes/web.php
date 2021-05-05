@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
-//Route::get('/login', [App\Http\Controllers\PagesController::class, 'ShowAuth']);
+Route::get('/patient/base', [PagesController::class, 'BasePatientShow'])->name('BasePatient');
 
 
 Auth::routes();
