@@ -11,5 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+// Extensions
+mix.js([
+        'resources/js/app.js'
+    ]
+    , 'public/js')
     .vue();
+
+
+
+mix.styles([
+    'resources/css/app.css',
+    'resources/css/summernote-bs4.min.css',
+], 'public/css/allExt.css');
