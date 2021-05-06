@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="menu-button">
-                    <a href="#">
+                    <a href="{{ route('Timetable') }}">
                         <div>Запись пациента на прием</div>
                     </a>
                 </div>

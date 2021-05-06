@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Models\Timetable;
 
 class PagesController extends Controller
 {
@@ -23,6 +24,9 @@ class PagesController extends Controller
             "patients" => $patients
         ]);
 
+    }
+    public function TimetableShow(){
+        return view('Timetable');
     }
     
 }

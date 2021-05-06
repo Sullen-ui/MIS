@@ -17,7 +17,15 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
+
+//Запись пациентов на приём
+Route::get('/timetable', [PagesController::class, 'TimetableShow'])->name('Timetable');
+
+//База пациентов
 Route::get('/patient/base', [PagesController::class, 'BasePatientShow'])->name('BasePatient');
+
+//Карта пациента
+Route::get('/patient/{$id}', [PagesController::class, 'PatientCart'])->name('PatientCart');
 
 
 Auth::routes();
