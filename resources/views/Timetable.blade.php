@@ -15,10 +15,9 @@
         <option value="1">Поликлиника №1</option>
         <option value="2">Поликлиника №3</option>
     </select>
-                    </div>
-    <div class="col-md-4 mb-2">
-    <input type="text" id="datepicker" name="date" placeholder="Дата" autocomplete="off" readonly="readonly" required="required" class="form__date center hasDatepicker">
     </div>
+    <div class="col-md-4 mb-2"><input class="form__date center" type="text" id="datepicker" name="date" placeholder="Дата" autocomplete="off" readonly required></div>
+
     <div class="col-md-4">
     <input type="submit" id="send-button" data-tooltip value="Показать" class="send-button red">
     </div>
