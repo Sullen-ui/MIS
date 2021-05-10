@@ -28,6 +28,8 @@ Route::get('/patient/base', [PagesController::class, 'BasePatientShow'])->name('
 Route::get('/patient/{$id}', [PagesController::class, 'PatientCart'])->name('PatientCart');
 
 
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

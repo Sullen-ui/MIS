@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Models\Timetable;
@@ -26,7 +27,13 @@ class PagesController extends Controller
 
     }
     public function TimetableShow(){
-        return view('Timetable');
+
+        $branches = Branch::All();
+
+        return view('Timetable',['branches'=> $branches]);
     }
+
+
+
     
 }

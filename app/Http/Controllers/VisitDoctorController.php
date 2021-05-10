@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Timetable;
-
-
+use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\VisitsController;
 class VisitDoctorController extends Controller
 {
        public function index(Request $request)
@@ -91,4 +91,29 @@ class VisitDoctorController extends Controller
             return response()->json($doctorsList, 200);
 
 }
+
+        // Запись пациента на прием по времени
+
+        public function CreatePatient(Request $request){
+
+            $patient = PatientsController::store($request->patient_data);
+
+            if($patient){
+                $visit = VisitsController::store($request->visit , $patient); 
+
+                if($visit['status_response'] == false){
+
+                    return $visit;
+                }else{
+                    return response()->json([
+
+                        'status'=>true,
+                        'message'=>'Успех',
+                        'patient_id' => $patient['id'],
+                        'visit_id' => $visit['id'],
+                        
+                    ], 201);
+                }
+            }
+        }
 }

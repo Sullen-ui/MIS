@@ -15,3 +15,6 @@ use App\Http\Controllers\VisitDoctorController;
 */
 Route::post('/timetable', [VisitDoctorController::class, 'index']);
 
+
+Route::post('/timetable/create', [VisitDoctorController::class, 'CreatePatient']);
+

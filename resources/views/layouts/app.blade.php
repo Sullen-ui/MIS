@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/allExt.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -93,6 +94,12 @@
         </div>
 
     </div>
+
+    
+        @include('ModalReg')
+
+
+
     <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
@@ -111,7 +118,9 @@
 
     <script src="{{ asset('/js/centrifuge.min.js') }}"></script>
     <script src="{{ asset('/js/application.js') }}"></script>
-    
+
+    <!-- //Скрипт расписания  -->
+    <script src="{{ asset('js/blanks/registerPolyclinic.js') }}"></script>
 
 
 </body>

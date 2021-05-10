@@ -32,10 +32,8 @@ function getAll(){
     preLoad($('#content-section'));
     $.ajax({
         type: "POST",
-        url: "/api/registration",
-        headers: {
-            "Authorization": "Bearer " + $.cookie('access_token')
-        },
+        url: "/api/timetable",
+       
         dataType: 'json',
         data: {
             "date": $('#datepicker').val(),
@@ -70,11 +68,11 @@ function dataHadler(data){
     $('.filter-wrapper').show(100);
     for (var i = 0; i < data.length; i++) {
         $('#doc-list').append(`
-            <div data-id="` + data[i]['id'] + `" class="wrapper item mb-3 ` + data[i]['profession_id'] + `"><div id="wrapper_info" class="wrapper_info" data-toggle="collapse" href="#collapse-` + data[i]['id'] + `" aria-expanded="true"><div class="name">ФИО: ` + data[i]['name'] + `</div><div class="cabinet">Кабинет: ` + data[i]['cabinet'] + `</div><div class="profession">Специальность: ` + data[i]['profession_name'] + `</div></div><div class="timelist row collapse" id="collapse-` + data[i]['id'] + `" style=""></div></div>
+            <div data-id="` + data[i]['id'] + `" class="wrapper item mb-3 ` + data[i]['id_profession'] + `"><div id="wrapper_info" class="wrapper_info" data-toggle="collapse" href="#collapse-` + data[i]['id'] + `" aria-expanded="true"><div class="name">ФИО: ` + data[i]['name'] + `</div><div class="cabinet">Кабинет: ` + data[i]['cabinet'] + `</div><div class="profession">Специальность: ` + data[i]['prof_name'] + `</div></div><div class="timelist row collapse" id="collapse-` + data[i]['id'] + `" style=""></div></div>
         `);
         if($(".dl[value='" + data[i]['profession_id'] + "']").length == 0){
             $('#filter').append(`
-                <option class="dl" value="`+ data[i]['profession_id'] +`">` + data[i]['profession_name'] + `</option>
+                <option class="dl" value="`+ data[i]['id_profession'] +`">` + data[i]['prof_name'] + `</option>
             `)
         }
         var array = data[i]['time'];
@@ -83,11 +81,11 @@ function dataHadler(data){
                 <div class="col-md-2 col-lg-1"><div class="time_item" data-status="0" data-uid="` + data[i]['id'] + prop +`">` + array[prop] + `</div></div>
             `)
         };
-        if(data[i]['acts']){
-            for(var b = 0; b < data[i]['acts'].length; b++){
-                $('.time_item[data-uid="'+ data[i]['acts'][b]['uid'] +'"]').attr('data-status', 1);
-                $('.time_item[data-uid="'+ data[i]['acts'][b]['uid'] +'"]').attr('data-id', data[i]['acts'][b]['id']);
-                $('.time_item[data-uid="'+ data[i]['acts'][b]['uid'] +'"]').addClass('red');
+        if(data[i]['visit']){
+            for(var b = 0; b < data[i]['visit'].length; b++){
+                $('.time_item[data-uid="'+ data[i]['visit'][b]['uid'] +'"]').attr('data-status', 1);
+                $('.time_item[data-uid="'+ data[i]['visit'][b]['uid'] +'"]').attr('data-id', data[i]['visit'][b]['id']);
+                $('.time_item[data-uid="'+ data[i]['visit'][b]['uid'] +'"]').addClass('red');
             }
         }
     }
@@ -166,38 +164,39 @@ $('#send-button-act').on('click', function (){
     }
 
     let data = {
-        "act_data": {
+        "visit": {
             "uid": uid,
-            "section_id": selectedSection,
-            "doctor_id": selectedDoctor,
-            "date": selectedDate
+            "id_branch": selectedSection,
+            "id_doctor": selectedDoctor,
+            "visit_date": selectedDate
         },
-        "cart_type": 0,
-        "cart_id": $('#cart-num').val(),
+        "id": $('#cart-num').val(),
         "patient_data": {
-            "policy_num": $('#policy-num').val(),
-            "policy_comp": $('#policy-comp').val(),
-            "policy_type": $('#policy-type').val(),
+            "polis_num": $('#policy-num').val(),
+            "polis_comp": $('#policy-comp').val(),
+            "polis_type": $('#policy-type').val(),
             "pasport_serial": $('#pasport-serial').val(),
             "pasport_num": $('#pasport-num').val(),
             "pasport_who": $('#pasport-who').val(),
             "pasport_date": $('#pasport-date').val(),
-            "snills": $('#snills').val(),
+            "snils": $('#snills').val(),
             "name": $('#name').val(),
-            "job": $('#job').val(),
+            "id_work": $('#job').val(),
             "gender": $('#gender').val(),
-            "born_date": $('#born-date').val(),
-            "born_addr": $('#born-addr').val(),
+            "dob": $('#born-date').val(),
+            "dob_place": $('#born-addr').val(),
             "registration": $('#registration').val(),
             "resident": 0,
             "phone": $('#phone').val(),
-            "social": $('#social').val(),
-            "type_disability": 0,
+            "soc_status": $('#social').val(),
+            "invalid": 0,
         }
     }
+
+    console.log(data);
     $.ajax({
         type: "POST",
-        url: "/api/registration/entry",
+        url: "/api/timetable/create",
         dataType: 'json',
         data: data,
         success: function(msg){
@@ -225,50 +224,50 @@ $('#policy-type').change(mask);
 
 //Поиск пациентов по имени
 
-$('#name').on('keyup', function(){
-    if($(this).val().split('_').join('').split(' ').join('').length > 3){
-        $.ajax({
-            type: "POST",
-            url: "/api/search/patient",
-            dataType: 'json',
-            data: {
-                "type": "name",
-                "data": $(this).val().split('_').join('')
-            },
-            success: function(msg){
-                searchDataHandler($('#search_box-name'), msg);
-            },
-            error: function (xhr, status, error) {
-                toolTip(xhr.responseJSON.message);
-            }
-        });
-    }
-});
+// $('#name').on('keyup', function(){
+//     if($(this).val().split('_').join('').split(' ').join('').length > 3){
+//         $.ajax({
+//             type: "POST",
+//             url: "/api/search/patient",
+//             dataType: 'json',
+//             data: {
+//                 "type": "name",
+//                 "data": $(this).val().split('_').join('')
+//             },
+//             success: function(msg){
+//                 searchDataHandler($('#search_box-name'), msg);
+//             },
+//             error: function (xhr, status, error) {
+//                 toolTip(xhr.responseJSON.message);
+//             }
+//         });
+//     }
+// });
 
 //По полюсу
 
-$('#policy-num').on('keyup', function(){
-    if($(this).val().split('_').join('').split(' ').join('').length > 3){
-        $.ajax({
-            type: "POST",
-            url: "/api/search/patient",
-            dataType: 'json',
-            data: {
-                "type": "policy",
-                "data": $(this).val().split('_').join('')
-            },
-            success: function(msg){
-                searchDataHandler($('#search_box-policy'), msg);
-            },
-            error: function (xhr, status, error) {
-                toolTip(xhr.responseJSON.message);
-            }
-        });
-    }else{
-        $("#search_box-policy").hide();
-        $("#search_box-name").hide();
-    }
-});
+// $('#policy-num').on('keyup', function(){
+//     if($(this).val().split('_').join('').split(' ').join('').length > 3){
+//         $.ajax({
+//             type: "POST",
+//             url: "/api/search/patient",
+//             dataType: 'json',
+//             data: {
+//                 "type": "policy",
+//                 "data": $(this).val().split('_').join('')
+//             },
+//             success: function(msg){
+//                 searchDataHandler($('#search_box-policy'), msg);
+//             },
+//             error: function (xhr, status, error) {
+//                 toolTip(xhr.responseJSON.message);
+//             }
+//         });
+//     }else{
+//         $("#search_box-policy").hide();
+//         $("#search_box-name").hide();
+//     }
+// });
 
 
 function searchDataHandler(block, data){

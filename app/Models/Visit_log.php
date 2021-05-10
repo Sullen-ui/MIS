@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 {
     use HasFactory;
 
-    protected $fillable = ['uid','id_patient', 'visit_date','id_branch','status'];
+    protected $fillable = ['uid','id_patient','id_doctor', 'visit_date','id_branch','status'];
+
+    public $timestamps = false;
 
 }
