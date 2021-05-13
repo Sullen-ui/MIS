@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Patient;
+use App\Models\Template;
 use Illuminate\Http\Request;
 use App\Models\Timetable;
 
@@ -31,6 +32,17 @@ class PagesController extends Controller
         $branches = Branch::All();
 
         return view('Timetable',['branches'=> $branches]);
+    }
+
+    public function Patient($id){
+        $patient = Patient::where('id', $id)->first();
+        $patient->old = PatientsController::old($patient->dob);
+        $templates = Template::where('id_doctor', NULL)->get();
+
+        return view('patient', [
+            "patient" => $patient,
+            "templates" => $templates
+        ]);
     }
 
 

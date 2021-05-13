@@ -76,7 +76,7 @@
                             <div class="col-lg-4"><input type="text" id="phone" name="phone" placeholder="Мобильный телефон" autocomplete="off"> </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-lg-4"><input type="text" id="cart-num" name="cart-num" placeholder="Номер амбулаторной карты" autocomplete="off"></div>
+                            <!-- <div class="col-lg-4"><input type="text" id="cart-num" name="cart-num" placeholder="Номер амбулаторной карты" autocomplete="off"></div> -->
                             <div class="col-lg-4"><input type="text" id="active-date" name="date" placeholder="Дата" autocomplete="off" readonly></div>
                             <!-- <div class="col-lg-4">
                                 <select id="stc" name="stc" required>

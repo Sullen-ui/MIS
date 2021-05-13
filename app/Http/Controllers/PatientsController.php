@@ -23,7 +23,7 @@ class PatientsController extends Controller
                 'pasport_date' => $data['pasport_date'],
                 'snils' => $data['snils'],
                 'name' => $data['name'],
-                'id_work' => $data['id_work'],
+                'work_place' => $data['work_place'],
                 'gender' => $data['gender'],
                 'dob' => $data['dob'],
                 'dob_place' => $data['dob_place'],
@@ -45,7 +45,7 @@ class PatientsController extends Controller
             $patient->pasport_date = $data ['pasport_date'];
             $patient->snils = $data ['snils'];
             $patient->name = $data ['name'];
-            $patient->id_work = $data ['id_work'];
+            $patient->work = $data ['work'];
             $patient->gender = $data ['gender'];
             $patient->dob = $data ['dob'];
             $patient->dob_place = $data ['dob_place'];
@@ -59,5 +59,39 @@ class PatientsController extends Controller
         return $patient;
       
      
+    }
+
+    public static function old($date)
+    {
+        $unix = (strtotime("now")/60/60) / 8760;
+        $date = (strtotime($date)/60/60) / 8760;
+        $c = explode(".", $unix - $date);
+        $d = str_split($c[0]);
+        if( end($d) == 1){
+            return $c[0] . " " . "год";
+        }elseif(end($d) == 2 || end($d) == 3 || end($d) == 4 ){
+            return $c[0] . " " . "года";
+        }elseif(end($d) == 0 || end($d) == 5 || end($d) == 6 || end($d) == 7 || end($d) == 8 || end($d) == 9){
+            return $c[0] . " " . "лет";
+        }
+    }
+
+    public function Show($id){
+
+        $patient = Patient::where('id', $id)->first();
+
+        if(!$patient || $patient->count() == 0){
+
+            return response()->json([
+                "status" => false,
+                "message" => "Пациент не найден"
+            ]);
+
+        }
+
+        return response()->json([
+            "status" => true,
+            "patient" => $patient
+        ]);
     }
 }

@@ -26,7 +26,6 @@ class CreatePatientsTable extends Migration
             $table->string('snils')->nullable();
             $table->string('gender');
             $table->string('work_place')->nullable();
-            $table->unsignedBigInteger('id_work')->nullable();
             $table->string('dob');
             $table->string('dob_place')->nullable();
             $table->string('registration')->nullable();
@@ -36,7 +35,7 @@ class CreatePatientsTable extends Migration
             $table->integer('invalid')->nullable(); // 0 - нет, 1,2,3 - группы
             
             $table->foreign('polis_type')->references('id')->on('polis')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('id_work')->references('id')->on('work_places')->onDelete('CASCADE')->onUpdate('CASCADE');
+           
 
         });
     }

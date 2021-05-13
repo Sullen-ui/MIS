@@ -3,7 +3,7 @@ var patient_information;
 
 $.ajax({
     type:'GET',
-    url: '/api/cart/' + urlArray[2],
+    url: '/api/emh/patient/' + urlArray[2],
     dataType:'json',
     success: function(data) {
         useReturnData(data);
@@ -48,6 +48,8 @@ $('#addPost').on('click', function (){
 
 $('#templates').change(getTemplate);
 
+
+//Создание записи в карте
 $('#sendPost').on('click', function (){
     $.ajax({
         type: "POST",
@@ -104,7 +106,7 @@ function getTemplate(){
     preLoad($('#modal-content-post'));
     $.ajax({
         type: "GET",
-        url: "/api/template/"+$('#templates').val(),
+        url: "/api/emh/template/" + $('#templates').val(),
         dataType: 'json',
         success: function(msg){
             if(msg.status == true){
@@ -121,6 +123,7 @@ function getTemplate(){
 }
 
 function fillTemplate(){
+    console.log(USERNAME);
     var Data = new Date();
     var Year = Data.getFullYear();
     var Month = String(Data.getMonth() + 1).padStart(2, '0');
@@ -128,11 +131,11 @@ function fillTemplate(){
     var Hour = Data.getHours();
     var Minutes = Data.getMinutes();
 
-    $('#post-temp_id').text(patient_information.cart_id);
+    $('#post-temp_id').text(patient_information.patient.id);
     $('#post-temp_name').text(patient_information.patient.name);
     $('#post-temp_date').text(Day + "." + Month + "." + Year);
     $('#post-temp_time').text(Hour + ":" + Minutes);
-    $('#post-temp_born').text(patient_information.patient.born_date)
+    $('#post-temp_born').text(patient_information.patient.dob)
     $('#doc-name').text(USERNAME);
 }
 

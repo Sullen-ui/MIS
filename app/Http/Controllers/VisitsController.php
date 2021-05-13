@@ -12,19 +12,19 @@ class VisitsController extends Controller
         $visit = Visit_log::where('uid', $visit_data['uid'])->where('visit_date', $visit_data['visit_date'])->first();
 
         if(!$visit || $visit->count() == 0){
-
-            return Visit_log::create([
-
-               
+            $visit = Visit_log::create([
                 'uid' => $visit_data['uid'],
                 'id_branch' => $visit_data['id_branch'],
                 'id_doctor' => $visit_data['id_doctor'],
                 'visit_date' => $visit_data['visit_date'],
                 'id_patient' => $patient_data['id'],
             ]);
-        }
+            return ['status_response' => true , 'visit' => $visit];
 
-        return ['status_response' =>false , 'message' => 'Время уже занято'];
-       
+        }else{
+
+            return ['status_response' => false , 'message' => 'Время уже занято'];
+        
+        }
    }
 }

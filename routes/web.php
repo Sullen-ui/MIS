@@ -13,26 +13,22 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () { return view('home'); });
 
+    //Запись пациентов на приём
+    Route::get('/timetable', [PagesController::class, 'TimetableShow'])->name('Timetable');
 
-//Запись пациентов на приём
-Route::get('/timetable', [PagesController::class, 'TimetableShow'])->name('Timetable');
+    //База пациентов
+    Route::get('/patient/base', [PagesController::class, 'BasePatientShow'])->name('BasePatient');
 
-//База пациентов
-Route::get('/patient/base', [PagesController::class, 'BasePatientShow'])->name('BasePatient');
+    //Карта пациента
+    // Route::get('/emh/{id}', [PagesController::class, 'EmhCart'])->name('PatientCart');
 
-//Карта пациента
-Route::get('/patient/{$id}', [PagesController::class, 'PatientCart'])->name('PatientCart');
-
-
-
+    //Страница пациента
+    Route::get('/patient/{id}', [PagesController::class, 'Patient'])->name('Patient');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

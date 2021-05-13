@@ -7,6 +7,7 @@ use App\Models\Doctor;
 use App\Models\Timetable;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\VisitsController;
+use App\Models\Visit_log;
 class VisitDoctorController extends Controller
 {
        public function index(Request $request)
@@ -100,20 +101,53 @@ class VisitDoctorController extends Controller
 
             if($patient){
                 $visit = VisitsController::store($request->visit , $patient); 
-
+               
                 if($visit['status_response'] == false){
-
-                    return $visit;
+                
+                    return response()->json($visit, 400);
+                
                 }else{
+                    
                     return response()->json([
-
                         'status'=>true,
-                        'message'=>'Успех',
+                        'message'=>'Пациент записан',
                         'patient_id' => $patient['id'],
-                        'visit_id' => $visit['id'],
-                        
+                        'visit_id' => $visit['visit']['id'],
                     ], 201);
+               
                 }
             }
+        }
+
+        public function ShowOne($id){
+            $visit = Visit_log::where('id', $id)->with('patient')->first();
+
+            if (!$visit) {
+                return response()->json([
+                    "status" => false,
+                    "message" => "Ничего не найдено"
+                ], 404);
+            }
+            return response()->json($visit);
+            
+        }
+
+        public function delete($id){
+            $visit = Visit_log::where('id', $id)->first();
+            
+            if (!$visit) {
+                return response()->json([
+                    "status" => false,
+                    "message" => "Ничего не найдено"
+                ], 404);
+            }
+
+            $visit->delete();
+
+            return response()->json([
+                "status" => true,
+                "message" => "Запись удалена"
+            ]);
+
         }
 }

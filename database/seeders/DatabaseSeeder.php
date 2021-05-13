@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
     $this->call(DoctorsTableSeeder::class);
     $this->call(TimeTableSeeder::class);
     $this->call(TemplatesSeeder::class);
-    $this->call(WorkPlacesSeeder::class);
     $this->call(PolisSeeder::class);
     $this->call(PatientSeeder::class);
     $this->call(VisitSeeder::class);   

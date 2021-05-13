@@ -118,13 +118,13 @@ $('#doc-list').on('click', '.time_item[data-status="1"]' , function(){
     selectedId = $(this).attr('data-id');
     $.ajax({
         type: "GET",
-        url: "/api/act/"+selectedId,
+        url: "/api/timetable/show/"+selectedId,
         dataType: 'json',
         success: function(msg){
             $('#act-name').text(msg.patient.name);
-            $('#act-born-date').text(msg.patient.born_date);
-            $('#act-policy-num').text(msg.patient.policy_num);
-            $('#act-job').text(msg.patient.job);
+            $('#act-born-date').text(msg.patient.dob);
+            $('#act-policy-num').text(msg.patient.polis_num);
+            $('#act-job').text(msg.patient.work_place);
             $('#act-phone').text(msg.patient.phone);
             $('#modalCenterContent').modal('show');
             $('#button-delete_act').attr('data-id', msg.id);
@@ -143,7 +143,7 @@ $('#doc-list').on('click', '.time_item[data-status="1"]' , function(){
 $('#button-delete_act').on('click', function (){
     $.ajax({
         type: "DELETE",
-        url: "/api/act/"+selectedId,
+        url: "/api/timetable/delete/"+selectedId,
         dataType: 'json',
         success: function(msg){
             if(msg.status == true){
@@ -170,7 +170,6 @@ $('#send-button-act').on('click', function (){
             "id_doctor": selectedDoctor,
             "visit_date": selectedDate
         },
-        "id": $('#cart-num').val(),
         "patient_data": {
             "polis_num": $('#policy-num').val(),
             "polis_comp": $('#policy-comp').val(),
@@ -181,7 +180,7 @@ $('#send-button-act').on('click', function (){
             "pasport_date": $('#pasport-date').val(),
             "snils": $('#snills').val(),
             "name": $('#name').val(),
-            "id_work": $('#job').val(),
+            "work_place": $('#job').val(),
             "gender": $('#gender').val(),
             "dob": $('#born-date').val(),
             "dob_place": $('#born-addr').val(),
@@ -193,7 +192,6 @@ $('#send-button-act').on('click', function (){
         }
     }
 
-    console.log(data);
     $.ajax({
         type: "POST",
         url: "/api/timetable/create",
@@ -208,6 +206,8 @@ $('#send-button-act').on('click', function (){
                 selectedId = msg.act_id;
                 selectedCartId = msg.cart_id;
                 $('#modalCenterPrint').modal('show');
+
+                console.log(selectedId);
             }
         },
         error: function (xhr, status, error) {

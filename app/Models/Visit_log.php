@@ -13,4 +13,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     public $timestamps = false;
 
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'id_patient', 'id');
+    }
+
 }

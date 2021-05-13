@@ -97,31 +97,44 @@
 
     
         @include('ModalReg')
+        @include('ModalRegContent')
+        @if(Route::current()->getName() == 'Patient')
+            @include('EMHModal')
+        @endif
 
+    @auth
+        <script>
+            const USERNAME = "{{Auth::user()->login}}";
+        </script>
+    
+        <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.inputmask.js') }}"></script>
+        <script src="{{ asset('/js/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.cookie.js') }}"></script>
+        <script src="{{ asset('/js/datepicker-ru.js') }}"></script>
+        <script src="{{ asset('/js/masks.js') }}"></script>
+        <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
+        <script src="{{ asset('/js/print.min.js') }}"></script>
+        <script src="{{ asset('/js/summernote/summernote.min.js') }}"></script>
+        <script src="{{ asset('/js/summernote/lang/summernote-ru-RU.min.js') }}"></script>
+        <script src="{{ asset('/js/summernote/summernote-ext-print.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
 
+        <script src="{{ asset('/js/centrifuge.min.js') }}"></script>
+        <script src="{{ asset('/js/application.js') }}"></script>
 
-    <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.inputmask.js') }}"></script>
-    <script src="{{ asset('/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('/js/datepicker-ru.js') }}"></script>
-    <script src="{{ asset('/js/masks.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
-    <script src="{{ asset('/js/print.min.js') }}"></script>
-    <script src="{{ asset('/js/summernote/summernote.min.js') }}"></script>
-    <script src="{{ asset('/js/summernote/lang/summernote-ru-RU.min.js') }}"></script>
-    <script src="{{ asset('/js/summernote/summernote-ext-print.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+        <!-- //Скрипт расписания  -->
+        @if(Route::current()->getName() == 'Timetable')
+            <script src="{{ asset('js/blanks/registerPolyclinic.js') }}"></script>
+        @endif
+        
+        @if(Route::current()->getName() == 'Patient')
+            <script src="{{ asset('js/blanks/cart.js') }}"></script>
+        @endif
 
-    <script src="{{ asset('/js/centrifuge.min.js') }}"></script>
-    <script src="{{ asset('/js/application.js') }}"></script>
-
-    <!-- //Скрипт расписания  -->
-    <script src="{{ asset('js/blanks/registerPolyclinic.js') }}"></script>
-
-
+    @endauth
 </body>
 </html>

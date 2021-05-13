@@ -18,7 +18,7 @@
                             <div class="row hover">
                                 <div class="col-md-7"><div class="base-item">{{ $patient['name'] }}</div></div>
                                 <div class="col-md-3"><div class="base-item">{{ $patient['born_date'] }}</div></div>
-                                <div class="col-md-2"><div class="base-item font-link"><a href="#"><i class="fas fa-eye"></i></a></div></div>
+                                <div class="col-md-2"><div class="base-item font-link"><a href="{{ route('Patient', ["id"=>$patient['id']]) }}"><i class="fas fa-eye"></i></a></div></div>
                             </div>
                         @endforeach
                         {{ $patients->links() }}

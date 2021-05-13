@@ -15,7 +15,7 @@ class CreateTemplatesTable extends Migration
     {
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_doctor');
+            $table->unsignedBigInteger('id_doctor')->nullable();
             $table->text('template');
             $table->string('name');
             $table->unsignedBigInteger('id_branch');
