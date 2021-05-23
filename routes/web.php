@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PatientsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +29,16 @@ Route::middleware(['auth'])->group(function () {
 
     //Страница пациента
     Route::get('/patient/{id}', [PagesController::class, 'Patient'])->name('Patient');
+     //Обновление данных пациента
+     Route::post('/patient/{id}', [PatientsController::class, 'PatientUpdate']);
+
+    //Админ панель
+    Route::post('/patient/Admin', [AdminController::class, 'Admin'])->name('Admin');
 });
+   
+
+
+
 
 Auth::routes();
 

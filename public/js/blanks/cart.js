@@ -137,5 +137,10 @@ function fillTemplate(){
     $('#post-temp_time').text(Hour + ":" + Minutes);
     $('#post-temp_born').text(patient_information.patient.dob)
     $('#doc-name').text(USERNAME);
+    $('#post-prof').text(PROF+"a");
+
 }
 
+    $('#button-edit_patient').on('click', function (){
+    $('#modalPatient').modal('show')
+    });

@@ -19,4 +19,8 @@ class Doctor extends Model
     {
         return $this->hasMany(Visit_log::class, 'id_doctor', 'id');
     }
+    public function profession()
+    {
+        return $this->hasOne(Profession::class,  'id' , 'id_profession');
+    }
 }

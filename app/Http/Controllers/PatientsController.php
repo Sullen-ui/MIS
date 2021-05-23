@@ -45,7 +45,7 @@ class PatientsController extends Controller
             $patient->pasport_date = $data ['pasport_date'];
             $patient->snils = $data ['snils'];
             $patient->name = $data ['name'];
-            $patient->work = $data ['work'];
+            $patient->work_place = $data ['work_place'];
             $patient->gender = $data ['gender'];
             $patient->dob = $data ['dob'];
             $patient->dob_place = $data ['dob_place'];
@@ -94,4 +94,33 @@ class PatientsController extends Controller
             "patient" => $patient
         ]);
     }
+    public function PatientUpdate($id, Request $request){
+       
+        $patient = Patient::where('id',$id)->first();
+
+
+        $patient->polis_num = $request ['polis_num'];
+        $patient->polis_comp = $request ['polis_comp'];
+        $patient->polis_type = $request ['polis_type'];
+        $patient->pasport_serial = $request ['pasport_serial'];
+        $patient->pasport_num = $request ['pasport_num'];
+        $patient->pasport_who = $request ['pasport_who'];
+        $patient->pasport_date = $request ['pasport_date'];
+        $patient->snils = $request ['snils'];
+        $patient->name = $request ['name'];
+        $patient->work_place = $request ['work_place'];
+        $patient->gender = $request ['gender'];
+        $patient->dob = $request ['dob'];
+        $patient->dob_place = $request ['dob_place'];
+        $patient->registration = $request ['registration'];
+        $patient->resident = $request ['resident'];
+        $patient->phone = $request ['phone'];
+        $patient->soc_status = $request ['soc_status'];
+        $patient->invalid = $request ['invalid'];
+
+        $patient->save();
+        return back();
+    
+    }
+
 }

@@ -14,7 +14,7 @@ class TemplatesSeeder extends Seeder
      */
     public function run()
     {
-        $ass = '<h4 style="width: 100%; text-align: center;">Первичный осмотр врача-Терапевта</h4>
+        $ass = '<h4 style="width: 100%; text-align: center;">Первичный осмотр <span id="post-prof"></span> </h4>
         <table style="WIDTH: 100%">
             <tbody><tr>
                 <td style="width: 70%;"><b>№ И.Б.</b>: <span id="post-temp_id"></span> </td>

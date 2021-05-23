@@ -24,6 +24,7 @@
 </head>
 <body>
 <div id="app">
+
         <div id="tooltip"></div>
         @if (Route::current()->getName() != 'login')
         <nav class="navbar navbar-expand-md navbar-light">
@@ -100,11 +101,14 @@
         @include('ModalRegContent')
         @if(Route::current()->getName() == 'Patient')
             @include('EMHModal')
+            @include('patientEditModal')
         @endif
 
     @auth
         <script>
             const USERNAME = "{{Auth::user()->login}}";
+            const PROF = "{{ \App\Http\Controllers\DoctorsController::DoctorInfo() }}";
+            
         </script>
     
         <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>
