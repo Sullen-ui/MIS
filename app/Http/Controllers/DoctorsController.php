@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-
 class DoctorsController extends Controller
 {
     public static function DoctorInfo(){
@@ -26,5 +25,11 @@ class DoctorsController extends Controller
         }
         return $doctor['id'];
 
+    }
+
+    public function delete($id){
+        Doctor::where('id', $id)->delete();
+
+        return back();
     }
 }

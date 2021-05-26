@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            @if(\App\Http\Controllers\UserController::RoleCheck('0,1'))
+            <!-- @if(\App\Http\Controllers\UserController::RoleCheck('0,1')) -->
             <div class="col-md-7">
             <div class="container-block">
             <div class="row mb-3"><div class="col-md-9"><h4>Амбулаторная карта</h4></div> <div class="col-md-3"><button id="addPost" class="red">Добавить запись</button></div></div>
@@ -40,7 +40,7 @@
 
                 </div>
             </div>
-            @endif
+            <!-- @endif -->
         </div>
     </div>
 @endsection

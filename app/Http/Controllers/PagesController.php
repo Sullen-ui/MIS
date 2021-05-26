@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Template;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Timetable;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class PagesController extends Controller
     public function ShowAuth(){
         return view('auth/login');
     }
-       
+
     public function BasePatientShow(Request $request){
         if($request->search){
             $patients = Patient::where('name', 'LIKE', "%$request->search%")->orWhere('polis_num', 'LIKE', "$request->search%")->paginate(15);
@@ -25,7 +26,7 @@ class PagesController extends Controller
         }else{
             $patients = Patient::paginate(15);
         }
-        
+
         return view('basePatients', [
             "patients" => $patients
         ]);
@@ -49,10 +50,18 @@ class PagesController extends Controller
         ]);
     }
 
-    public function AdminTableShow(){
-    
-        return view('AdminTable');
+
+    public function Admin(){
+        $branches = Branch::all();
+        $doctors = Doctor::all();
+        $users = User::all();
+
+        return view('AdminTable', [
+            "branches" => $branches,
+            "doctors" => $doctors,
+            "users" => $users
+        ]);
     }
 
-    
+
 }

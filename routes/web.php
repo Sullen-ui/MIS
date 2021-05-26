@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\BranchsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DoctorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +36,15 @@ Route::middleware(['auth'])->group(function () {
      Route::post('/patient/{id}', [PatientsController::class, 'PatientUpdate']);
 
     //Админ панель
-    Route::post('/patient/Admin', [AdminController::class, 'Admin'])->name('Admin');
+    Route::get('/admin', [PagesController::class, 'Admin'])->name('Admin');
+
+    Route::post('/branches/delete/{id}', [BranchsController::class, 'delete']);
+
+    Route::post('/users/delete/{id}', [UserController::class, 'delete']);
+
+    Route::post('/doctors/delete/{id}', [DoctorsController::class, 'delete']);
 });
-   
+
 
 
 
