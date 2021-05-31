@@ -19,6 +19,14 @@
                     </a>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="menu-button">
+                    <a href="{{ route('Timetable') }}">
+                        <div>Регистрация пациента в системе</div>
+                    </a>
+                </div>
+            </div>
      
           
         </div>

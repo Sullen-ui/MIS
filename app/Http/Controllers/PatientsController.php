@@ -123,4 +123,24 @@ class PatientsController extends Controller
     
     }
 
+    public function search(Request $request)
+    {
+        if($request->type == "name"){
+            $patient = Patient::where('name', 'LIKE', "$request->data%")->limit(5)->get();
+        }else if($request->type == "polis"){
+            $patient = Patient::where('polis_num', 'LIKE', "$request->data%")->limit(5)->get();
+        }
+
+        if(!$patient && $patient->count() == 0){
+            return response()->json([
+               "status" => false,
+            ], 404);
+        }
+
+        return response()->json([
+            "status" => true,
+            "patients" => $patient
+        ]);
+    }
+
 }

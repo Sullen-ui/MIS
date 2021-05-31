@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
+Route::post('/search/patient', [PatientsController::class, 'search']);
 
 
 Auth::routes();
