@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Timetable;
 use Illuminate\Support\Facades\Auth;
+use App\Models\EMH;
 
 
 
@@ -43,10 +44,12 @@ class PagesController extends Controller
         $patient = Patient::where('id', $id)->first();
         $patient->old = PatientsController::old($patient->dob);
         $templates = Template::where('id_doctor',DoctorsController::getDoctorID())->get();
+        $emhs = EMH::where('id_patient', $id)->get();
 
         return view('patient', [
             "patient" => $patient,
-            "templates" => $templates
+            "templates" => $templates,
+            "emhs" => $emhs
         ]);
     }
 

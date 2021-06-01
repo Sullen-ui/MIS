@@ -51,26 +51,27 @@ $('#templates').change(getTemplate);
 
 //Создание записи в карте
 $('#sendPost').on('click', function (){
+    console.log(patient_information);
     $.ajax({
         type: "POST",
-        url: "/api/post",
+        url: "/api/emh/create",
         dataType: 'json',
         data: {
-            "cart_id": urlArray[2],
-            "post_name": $('#post-head_input').val(),
-            "doctor_id": USERID,
-            "post": $('#post-summer').summernote('code'),
+            "id_patient": patient_information.patient.id,
+            "name": $('#post-head_input').val(),
+            "id_doctor": USERID,
+            "description": $('#post-summer').summernote('code'),
         },
         success: function(msg){
             if(msg.status == true){
                 $('#modalCenterPost').modal('hide');
                 toolTip("Запись добавлена", 1);
-                if($('#post-container').children('.post-item').length == 0){
+                if($('.container-block').children('.post-item').length == 0){
                     $('#post-container').empty();
                 }
-                $('#post-container').append(`
+                $('.container-block').append(`
                     <div class="row post-item" data-id="` + msg.post.id + `">
-                         <div class="col-md-9">` + msg.post.post_name + `</div>
+                         <div class="col-md-9">` + msg.post.name + `</div>
                          <div class="col-md-3 canter">` + msg.post.create_date + `</div>
                     </div>
                 `)
@@ -82,7 +83,7 @@ $('#sendPost').on('click', function (){
     });
 });
 
-$('#post-container').on('click', '.post-item' , function (){
+$('.container-block').on('click', '.post-item' , function (){
     $('#modalCenterPostContent').modal('show');
     preLoad($('#modal-content-p'));
     $.ajax({
@@ -91,7 +92,7 @@ $('#post-container').on('click', '.post-item' , function (){
         dataType: 'json',
         success: function(msg){
             if(msg.status == true){
-                $('#postName').text(msg.post.post_name);
+                $('#postName').text(msg.post.name);
                 $('#postContent').html(msg.post.post);
                 removePreLoader();
             }

@@ -97,9 +97,12 @@
     </div>
 
     
-        @include('ModalReg')
+    @if(Route::current()->getName() == 'Timetable')
+            @include('ModalReg')
+            @include('ModalRegContent')
+        @endif
         @include('ModalAdminUsers')
-        @include('ModalRegContent')
+     
         @if(Route::current()->getName() == 'Patient')
             @include('EMHModal')
             @include('patientEditModal')
@@ -110,7 +113,8 @@
             const USERNAME = "{{Auth::user()->login}}";
             const PROF = "{{ \App\Http\Controllers\DoctorsController::DoctorInfo() }}";
             const CSRF = "{{ csrf_token() }}";
-            
+            const USERID = {{ Auth::user()->id }};
+
         </script>
     
         <script src="{{ asset('/js/jquery-3.6.0.min.js') }}"></script>

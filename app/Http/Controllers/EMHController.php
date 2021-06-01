@@ -16,9 +16,12 @@ class EMHController extends Controller
             'create_date' =>  date('d.m.Y'),
             'description' => $request->description,
             'name' => $request->name
-        
+
         ]);
 
-
+        return response()->json([
+            "status" => true,
+            "post" => $emh
+        ]);
     }
 }

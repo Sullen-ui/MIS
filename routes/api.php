@@ -6,7 +6,7 @@ use App\Http\Controllers\VisitDoctorController;
 use App\Http\Controllers\TemplatesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\EMHController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

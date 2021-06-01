@@ -32,13 +32,18 @@
             <!-- @if(\App\Http\Controllers\UserController::RoleCheck('0,1')) -->
             <div class="col-md-7">
             <div class="container-block">
-            <div class="row mb-3"><div class="col-md-9"><h4>Амбулаторная карта</h4></div> <div class="col-md-3"><button id="addPost" class="red">Добавить запись</button></div></div>
-                        <div class="row">
-                            <div class="col-md-10"></div>
-                            <div class="col-md-2 font-link"></div>
-                        </div>
-
+                <div class="row mb-3"><div class="col-md-9"><h4>Амбулаторная карта</h4></div> <div class="col-md-3"><button id="addPost" class="red">Добавить запись</button></div></div>
+                <div class="row">
+                      <div class="col-md-10"></div>
+                      <div class="col-md-2 font-link"></div>
                 </div>
+                      @foreach($emhs as $emh)
+                            <div class="row post-item" data-id="{{ $emh['id'] }}">
+                                <div class="col-md-9">{{ $emh['name'] }}</div>
+                                <div class="col-md-3 canter">{{ $emh['create_date'] }}</div>
+                            </div>
+                      @endforeach
+            </div>
             </div>
             <!-- @endif -->
         </div>
