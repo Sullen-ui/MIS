@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
  
-     <title>{{ config('ass', 'Ass') }}</title> <!-- app.name -->
+     <title>{{ config('MIS', 'Медицинская информационная система') }}</title> <!-- app.name -->
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/61093a97c4.js" crossorigin="anonymous"></script>
@@ -62,7 +62,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ 'Салам Алейкум, ' . Auth::user()->login }}
+                                    {{ 'Здравствуйте, ' . \App\Http\Controllers\UserController::name() }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -109,6 +109,7 @@
         <script>
             const USERNAME = "{{Auth::user()->login}}";
             const PROF = "{{ \App\Http\Controllers\DoctorsController::DoctorInfo() }}";
+            const CSRF = "{{ csrf_token() }}";
             
         </script>
     

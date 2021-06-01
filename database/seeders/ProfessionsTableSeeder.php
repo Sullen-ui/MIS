@@ -14,7 +14,9 @@ class ProfessionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('professions')->insert([
+
+
+            DB::table('professions')->insert([
             ['name' => 'Хирург-онколог'],
             ['name' => 'Травматолог'],
             ['name' => 'Эндокринолог'],

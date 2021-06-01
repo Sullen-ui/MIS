@@ -222,27 +222,28 @@ $('#send-button-act').on('click', function (){
 $('#policy-type').change(mask);
 
 
-//Поиск пациентов по имени
+// Поиск пациентов по имени
 
-// $('#name').on('keyup', function(){
-//     if($(this).val().split('_').join('').split(' ').join('').length > 3){
-//         $.ajax({
-//             type: "POST",
-//             url: "/api/search/patient",
-//             dataType: 'json',
-//             data: {
-//                 "type": "name",
-//                 "data": $(this).val().split('_').join('')
-//             },
-//             success: function(msg){
-//                 searchDataHandler($('#search_box-name'), msg);
-//             },
-//             error: function (xhr, status, error) {
-//                 toolTip(xhr.responseJSON.message);
-//             }
-//         });
-//     }
-// });
+$('#name').on('keyup', function(){
+    if($(this).val().split('_').join('').split(' ').join('').length > 3){
+        $.ajax({
+            type: "POST",
+            url: "/search/patient",
+            dataType: 'json',
+            data: {
+                "_token": CSRF,
+                "type": "name",
+                "data": $(this).val().split('_').join('')
+            },
+            success: function(msg){
+                searchDataHandler($('#search_box-name'), msg);
+            },
+            error: function (xhr, status, error) {
+                toolTip(xhr.responseJSON.message);
+            }
+        });
+    }
+});
 
 //По полюсу
 
@@ -275,7 +276,7 @@ function searchDataHandler(block, data){
     if(data.patients.length > 0){
         for(let i = 0; i < data.patients.length; i++){
             block.append(`
-            <div class="search-item_container" data-id="` + data.patients[i]['id'] + `">` + data.patients[i]['policy_num'] + ` - ` + data.patients[i]['name'] + ` ` + data.patients[i]['born_date'] + `</div>
+            <div class="search-item_container" data-id="` + data.patients[i]['id'] + `">` + data.patients[i]['polis_num'] + ` - ` + data.patients[i]['name'] + ` ` + data.patients[i]['dob'] + `</div>
         `);
         }
         block.show();
@@ -301,27 +302,26 @@ $('.search-box').on('click', '.search-item_container', function (){
     $(this).parent().hide();
     $.ajax({
         type: "GET",
-        url: "/api/patient/"+$(this).attr('data-id'),
+        url: "/api/emh/patient/"+$(this).attr('data-id'),
         dataType: 'json',
         success: function(msg){
-            $('#policy-type').val(msg.patient.policy_type);
+            $('#policy-type').val(msg.patient.polis_type);
             mask();
-            $('#policy-num').val(msg.patient.policy_num);
-            $('#policy-comp').val(msg.patient.policy_comp);
-            $('#snills').val(msg.patient.snills);
+            $('#policy-num').val(msg.patient.polis_num);
+            $('#policy-comp').val(msg.patient.polis_comp);
+            $('#snills').val(msg.patient.snils);
             $('#pasport-serial').val(msg.patient.pasport_serial);
             $('#pasport-num').val(msg.patient.pasport_num);
             $('#pasport-date').val(msg.patient.pasport_date);
             $('#pasport-who').val(msg.patient.pasport_who);
             $('#name').val(msg.patient.name);
-            $('#born-date').val(msg.patient.born_date);
+            $('#born-date').val(msg.patient.dob);
             $('#gender').val(msg.patient.gender);
-            $('#born-addr').val(msg.patient.born_addr);
+            $('#born-addr').val(msg.patient.dob_place);
             $('#registration').val(msg.patient.registration);
-            $('#job').val(msg.patient.job);
-            $('#social').val(msg.patient.social);
+            $('#job').val(msg.patient.work_place);
+            $('#social').val(msg.patient.soc_status);
             $('#phone').val(msg.patient.phone);
-            $('#cart-num').val((msg.patient.cart.cart_id)?msg.patient.cart.cart_id:msg.patient.cart.id);
             $('.suggestions-wrapper').show();
         },
         error: function (xhr, status, error) {
