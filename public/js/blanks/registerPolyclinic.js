@@ -245,7 +245,7 @@ $('#name').on('keyup', function(){
     }
 });
 
-//По полюсу
+//По полису
 
 // $('#policy-num').on('keyup', function(){
 //     if($(this).val().split('_').join('').split(' ').join('').length > 3){

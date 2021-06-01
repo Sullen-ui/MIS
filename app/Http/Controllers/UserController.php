@@ -44,6 +44,7 @@ class UserController extends Controller
                     'message' => "Пользователь добавлен"
                 ]
                 );
+            }
     public static function name(){
         $doctor = Doctor::where('id_user', Auth::user()->id)->first();
         return ($doctor)?$doctor->name:Auth::user()->login;
