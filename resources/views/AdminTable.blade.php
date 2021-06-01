@@ -35,16 +35,16 @@
         <div class="row mb-5">
             <h2>Отделения</h2>
             <div class="col-md-3 ">
-            <button type="button" class="btn btn-primary ">Добавить отделение</button>
+            <button type="button" id="AddBranch" class="btn btn-primary ">Добавить отделение</button>
             </div>
 
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Service_status</th>
-                    <th scope="col">Short_name</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Статус услуг</th>
+                    <th scope="col">Короткое наименование</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -60,6 +60,10 @@
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form'+{{ $branch['id'] }}).submit();">
                                 <i class="fas fa-times"></i>
+                            </a>
+                            <a href="#"onclick="event.preventDefault();
+                                                     document.getElementById('logout-form'+{{ $branch['id'] }}).submit();">
+                            <i class="far fa-edit"></i>
                             </a>
 
                             <form id="logout-form{{ $branch['id'] }}" action="/branches/delete/{{ $branch['id'] }}" method="POST" class="d-none">
@@ -80,21 +84,21 @@
         <div class="row mb-5">
             <h2>Доктора</h2>
             <div class="col-md-3 ">
-            <button type="button" class="btn btn-primary ">Добавить доктора</button>
+            <button type="button" id="AddDoctor" class="btn btn-primary ">Добавить доктора</button>
             </div>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">dob</th>
-                    <th scope="col">prof_name</th>
-                    <th scope="col">id_profession</th>
-                    <th scope="col">id_branch</th>
-                    <th scope="col">status</th>
-                    <th scope="col">cabinet</th>
-                    <th scope="col">id_user</th>
-                    <th scope="col">work_day</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Дата рождения</th>
+                    <th scope="col">Профессия</th>
+                    <th scope="col">ID Профессии</th>
+                    <th scope="col">ID Отделения</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Кабинет</th>
+                    <th scope="col">ID Пользователя</th>
+                    <th scope="col">Рабочие дни</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -117,6 +121,9 @@
                                     document.getElementById('doc-form'+{{ $doctor['id'] }}).submit();">
                                 <i class="fas fa-times"></i>
                             </a>
+                            <a href="#">
+                            <i class="far fa-edit"></i>
+                            </a>
 
                             <form id="doc-form{{ $doctor['id'] }}" action="/doctors/delete/{{ $doctor['id'] }}" method="POST" class="d-none">
                                 @csrf
@@ -135,15 +142,15 @@
         <div class="row">
             <h2>Пользователи</h2>
             <div class="col-md-3 ">
-            <button type="button" class="btn btn-primary ">Добавить пользователя</button>
+            <button type="button" id="AddUser" class="btn btn-primary ">Добавить пользователя</button>
             </div>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">login</th>
-                    <th scope="col">type</th>
-                    <th scope="col">id_branch</th>
+                    <th scope="col">Роль</th>
+                    <th scope="col">ID Отделения</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -159,6 +166,9 @@
                                 onclick="event.preventDefault();
                                     document.getElementById('user-form'+{{ $user['id'] }}).submit();">
                                 <i class="fas fa-times"></i>
+                            </a>
+                            <a href="#">
+                            <i class="far fa-edit"></i>
                             </a>
 
                             <form id="user-form{{ $user['id'] }}" action="/users/delete/{{ $user['id'] }}" method="POST" class="d-none">

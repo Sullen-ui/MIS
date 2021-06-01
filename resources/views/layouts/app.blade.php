@@ -98,6 +98,7 @@
 
     
         @include('ModalReg')
+        @include('ModalAdminUsers')
         @include('ModalRegContent')
         @if(Route::current()->getName() == 'Patient')
             @include('EMHModal')
@@ -126,6 +127,7 @@
         <script src="{{ asset('/js/summernote/lang/summernote-ru-RU.min.js') }}"></script>
         <script src="{{ asset('/js/summernote/summernote-ext-print.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('/js/blanks/admin.js') }}"></script>
 
         <script src="{{ asset('/js/centrifuge.min.js') }}"></script>
         <script src="{{ asset('/js/application.js') }}"></script>

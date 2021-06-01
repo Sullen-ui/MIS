@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitDoctorController;
 use App\Http\Controllers\TemplatesController;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +36,6 @@ Route::get('/emh/template/{id}', [TemplatesController::class, 'ShowTemplate']);
 
 //Заполнение шаблона переменными
 Route::get('/emh/patient/{id}', [PatientsController::class, 'Show']);
+
+//Добавление пользователя
+Route::post('/admin/user-add', [UserController::class, 'Create']);

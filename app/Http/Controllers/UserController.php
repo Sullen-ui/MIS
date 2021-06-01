@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,5 +26,22 @@ class UserController extends Controller
         User::where('id', $id)->delete();
 
         return back();
+    }
+
+    public function create(Request $request){
+        User::create([
+            'login' => $request->login,
+            'password' =>Hash::make($request->password),
+            'type' => $request->type,
+            'id_branch' => $request->id_branch,
+
+        ]);
+
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => "Пользователь добавлен"
+                ]
+                );
     }
 }
