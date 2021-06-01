@@ -29,7 +29,6 @@ class UserController extends Controller
         return back();
     }
 
-<<<<<<< HEAD
     public function create(Request $request){
         User::create([
             'login' => $request->login,
@@ -45,10 +44,8 @@ class UserController extends Controller
                     'message' => "Пользователь добавлен"
                 ]
                 );
-=======
     public static function name(){
         $doctor = Doctor::where('id_user', Auth::user()->id)->first();
         return ($doctor)?$doctor->name:Auth::user()->login;
->>>>>>> 3d4fdf0afa7e0d1d6e466984728fcb21215ca558
     }
 }
